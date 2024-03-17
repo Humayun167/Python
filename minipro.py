@@ -1,5 +1,6 @@
 import json
 
+
 def load_tasks():
     try:
         with open('tasks.json', 'r') as file:
@@ -8,9 +9,11 @@ def load_tasks():
         tasks = []
     return tasks
 
+
 def save_tasks(tasks):
     with open('tasks.json', 'w') as file:
         json.dump(tasks, file)
+
 
 def display_tasks(tasks):
     if not tasks:
@@ -20,11 +23,13 @@ def display_tasks(tasks):
             status = 'Done' if task['completed'] else 'Not Done'
             print(f"{index}. {task['description']} - {status}")
 
+
 def add_task(tasks, description):
     task = {'description': description, 'completed': False}
     tasks.append(task)
     save_tasks(tasks)
     print(f"Task '{description}' added successfully.")
+
 
 def mark_completed(tasks, index):
     if 1 <= index <= len(tasks):
@@ -34,6 +39,7 @@ def mark_completed(tasks, index):
     else:
         print("Invalid task index.")
 
+
 def delete_task(tasks, index):
     if 1 <= index <= len(tasks):
         del tasks[index - 1]
@@ -41,6 +47,7 @@ def delete_task(tasks, index):
         print("Task deleted successfully.")
     else:
         print("Invalid task index.")
+
 
 def main():
     tasks = load_tasks()
@@ -71,6 +78,7 @@ def main():
             break
         else:
             print("Invalid choice. Please enter a number between 1 and 4.")
+
 
 if __name__ == "__main__":
     main()
